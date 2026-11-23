@@ -1,16 +1,50 @@
-# React + Vite
+# Rick and Morty Explorer · React
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicación web que consume la [Rick and Morty API](https://rickandmortyapi.com/) para explorar personajes y episodios de la serie. Es la versión en React de [rick-and-morty-explorer](https://github.com/alvarobarrenadev/rick-and-morty-explorer) (vanilla JS), con la misma funcionalidad y el mismo diseño.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Personajes**: listado con búsqueda por nombre (con debounce), filtro por estado y especie, y botón "Limpiar filtros".
+- **Detalle de personaje** en un modal: tipo, género, origen, ubicación, fecha de creación y lista de episodios.
+- **Episodios**: listado con fecha de emisión y número de personajes. El detalle muestra los personajes del episodio y enlaza al detalle de cada uno.
+- **Paginación** con el botón "Cargar más".
+- **Favoritos** guardados en `localStorage`, con un contador en el menú y una página propia.
+- **Estados de carga y error**: spinner, mensajes de lista vacía y errores de red con botón "Reintentar".
+- **Responsive**: grid de 1, 2, 3 o 4 columnas según el ancho de pantalla.
+- Accesibilidad: navegación por teclado en las cards, modal que se cierra con Esc y devuelve el foco, y `aria-live` en los estados.
+- Extras: scroll suave con Lenis y PWA instalable (manifest y service worker).
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + Vite
+- React Router (`HashRouter`)
+- Sass con arquitectura 7-1 (`src/sass`)
+- Context API para el estado global (favoritos, caché de listas y modal)
 
-## Expanding the Oxlint configuration
+## Estructura
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+src/
+  api/          cliente de la API (fetch, errores y paginación)
+  components/   cards, filtros, modal, loader, mensajes…
+  context/      FavoritesContext, ExplorerContext y ModalContext
+  hooks/        usePaginatedList, useAsync, useDebounce y useLenis
+  pages/        CharactersPage, EpisodesPage y FavoritesPage
+  utils/        formateadores, localStorage y filtros
+  sass/         abstracts, base, components, layout, pages y themes
+```
+
+## Scripts
+
+```bash
+pnpm install
+pnpm dev       # servidor de desarrollo
+pnpm build     # build de producción en dist/
+pnpm preview   # sirve el build en local
+pnpm lint      # oxlint
+pnpm deploy    # build + publicación en GitHub Pages (rama gh-pages)
+```
+
+---
+
+Proyecto hecho por [Álvaro Barrena Revilla](https://www.alvarobarrena.com/).
