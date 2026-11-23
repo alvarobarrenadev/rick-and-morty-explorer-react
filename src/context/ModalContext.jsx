@@ -30,6 +30,7 @@ export function ModalProvider({ children }) {
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>
 }
 
+// El hook se exporta junto al Provider: patrón habitual de los contextos
 // eslint-disable-next-line react-refresh/only-export-components
 export function useModal() {
   const context = useContext(ModalContext)

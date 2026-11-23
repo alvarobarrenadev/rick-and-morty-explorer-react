@@ -1,10 +1,10 @@
 import { createContext, useCallback, useContext, useMemo, useState } from 'react'
+import { EMPTY_FILTERS } from '@/utils/filters.jsx'
 
 // Contexto que guarda las listas cargadas y los filtros de personajes
 // Equivale al store de state.js del proyecto en JS: al volver a una sección
 // se recuperan sus resultados y filtros sin volver a llamar a la API
 
-export const EMPTY_FILTERS = { name: '', status: '', species: '' }
 
 const INITIAL_LIST = {
   results: [],
@@ -42,6 +42,7 @@ export function ExplorerProvider({ children }) {
   return <ExplorerContext.Provider value={value}>{children}</ExplorerContext.Provider>
 }
 
+// El hook se exporta junto al Provider: patrón habitual de los contextos
 // eslint-disable-next-line react-refresh/only-export-components
 export function useExplorer() {
   const context = useContext(ExplorerContext)

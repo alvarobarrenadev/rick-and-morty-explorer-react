@@ -1,4 +1,4 @@
-import { EMPTY_FILTERS } from '@/context/ExplorerContext.jsx'
+import { EMPTY_FILTERS } from '@/utils/filters.jsx'
 
 // Opciones del selector de estado; la primera ("Todos") equivale a no filtrar
 const STATUS_OPTIONS = [

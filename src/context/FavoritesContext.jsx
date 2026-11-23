@@ -54,6 +54,7 @@ export function FavoritesProvider({ children }) {
   return <FavoritesContext.Provider value={value}>{children}</FavoritesContext.Provider>
 }
 
+// El hook se exporta junto al Provider: patrón habitual de los contextos
 // eslint-disable-next-line react-refresh/only-export-components
 export function useFavorites() {
   const context = useContext(FavoritesContext)
